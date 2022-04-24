@@ -1,6 +1,7 @@
 import express from "express";
 import http from 'http';
 import cors from 'cors';
+import path from 'path';
 import { Server } from 'socket.io';
 
 const app = express();
@@ -293,6 +294,17 @@ const refreshMatch = (roomId) => {
 const sendMessage = (sender, message) => {
     sockets.emit('receiveMessage', {sender: sender, message: message});
 };
+
+app.use(express.static(path.resolve()));
+app.use(express.static(path.join(path.resolve(), 'build')));
+
+app.get('ping', (req, res) => {
+    res.send('pong');
+});
+
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(path.resolve, 'build', 'index.html'));
+});
 
 const PORT = process.env.PORT || 4000;
 server.listen(PORT, () =>{
