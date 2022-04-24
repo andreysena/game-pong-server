@@ -303,7 +303,7 @@ app.get('ping', (req, res) => {
 });
 
 app.get('/*', (req, res) => {
-    res.sendFile(path.join(path.resolve, 'build', 'index.html'));
+    res.sendFile(path.join(path.resolve(), 'build', 'index.html'));
 });
 
 const PORT = process.env.PORT || 4000;
