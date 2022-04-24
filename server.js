@@ -294,7 +294,7 @@ const sendMessage = (sender, message) => {
     sockets.emit('receiveMessage', {sender: sender, message: message});
 };
 
-const port = 4000;
-server.listen(port, () =>{
-    console.log(`O servidor está rodando na porta ${4000}`);
+const PORT = process.env.PORT || 4000;
+server.listen(PORT, () =>{
+    console.log(`O servidor está rodando na porta ${PORT}`);
 });
